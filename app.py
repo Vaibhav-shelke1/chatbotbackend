@@ -6,15 +6,12 @@ import markdown
 app = Flask(__name__)
 CORS(app)
 
-# Configure Gemini API
 genai.configure(api_key="AIzaSyCwzIOji0RwhAmwhQ2E1ZdP-newN-SIJa4")
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 def format_response(text):
-    # Add Markdown formatting
     formatted_text = f"{text}"
     
-    # Convert Markdown to HTML
     html = markdown.markdown(formatted_text)
     
     return html
@@ -34,6 +31,3 @@ def chat():
 if __name__ == '__main__':
     app.run(debug=True)
 
-# Test the formatting
-test_response = "This is a test response.\n\n- Point 1\n- Point 2\n\nSome `code` example."
-print(format_response(test_response))
